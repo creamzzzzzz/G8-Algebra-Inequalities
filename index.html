@@ -1,0 +1,874 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Algebra and Inequalities Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Figtree:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: sticky colour-coded nav over one long guide. Hues by topic:
+   blue = indices, green = like terms and expanding, orange = substitution, purple = inequalities,
+   pink = practice, gold = exam rules, cyan = checklist. Committed dark look. */
+:root{
+  --bg:#0E1322; --surface:#161D33; --surface-2:#1F2847; --fg:#E7EBF7; --muted:#9BA7C6; --line:#2B3657;
+  --blue:#7FA6FF; --green:#4ED6A0; --orange:#FF9D57; --purple:#BC94FF; --pink:#FF86B1; --cyan:#52CFEA; --gold:#F3C65A; --slate:#9CA8C6;
+  --mark:rgba(243,198,90,.38);
+  --display:'Caveat',cursive; --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --math:'Cambria Math','STIX Two Math',Georgia,'Times New Roman',serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 var(--body);padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:980px;margin:0 auto}
+h1,h2,h3,h4,p{margin:0}
+h2{font:800 clamp(26px,5vw,36px)/1.15 var(--body);text-wrap:balance;letter-spacing:-.01em}
+h3{font:700 18px/1.3 var(--body)}
+button{font:inherit;color:inherit;cursor:pointer}
+.hl{background:linear-gradient(transparent 52%,var(--mark) 52%);padding:0 2px;border-radius:2px}
+.muted{color:var(--muted)}
+.mx{font-family:var(--math);font-size:1.08em;letter-spacing:.01em;white-space:nowrap}
+.h-blue{--c:var(--blue)}.h-green{--c:var(--green)}.h-orange{--c:var(--orange)}.h-purple{--c:var(--purple)}
+.h-pink{--c:var(--pink)}.h-cyan{--c:var(--cyan)}.h-gold{--c:var(--gold)}.h-slate{--c:var(--slate)}
+:where(.chip,.navbtn,.fbtn,.ins){--c:var(--slate)}
+.tint{background:color-mix(in srgb,var(--c) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 38%,var(--surface));border-radius:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.chip{display:inline-flex;align-items:center;gap:7px;font:600 13px/1.2 var(--body);padding:6px 11px;border-radius:999px;
+  background:color-mix(in srgb,var(--c) 16%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 45%,var(--surface))}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--c);flex:none;display:inline-block}
+:focus-visible{outline:3px solid var(--c,var(--blue));outline-offset:2px}
+
+.hero{padding-top:36px;padding-bottom:18px}
+.eyebrow{font:700 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(50px,11vw,90px)/.95 var(--display);margin:12px 0 10px}
+.sub{max-width:60ch;color:var(--muted);font-size:17px}
+.key{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px auto 22px}
+.keylabel{font:700 12px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);
+  margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav-in{max-width:980px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:thin}
+.navbtn{flex:none;display:inline-flex;align-items:center;gap:8px;font:600 14px/1 var(--body);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 14px}
+.navbtn:hover{border-color:var(--c)}
+.navbtn[aria-current="true"]{background:color-mix(in srgb,var(--c) 22%,var(--surface));border-color:var(--c)}
+@media (prefers-reduced-motion:no-preference){.navbtn,.go,.fbtn,.st{transition:background .15s,border-color .15s}}
+
+.sec{padding-top:56px;scroll-margin-top:calc(env(safe-area-inset-top,0px) + 64px)}
+.sec-head{display:flex;flex-direction:column;gap:4px;margin-bottom:22px}
+.sec-tag{font:700 26px/1 var(--display);color:var(--c)}
+.lead{max-width:66ch;font-size:17px;margin-bottom:20px}
+.sub-h{display:flex;align-items:center;gap:10px;margin:34px 0 14px}
+.sub-h::before{content:"";width:12px;height:12px;border-radius:3px;background:var(--c);flex:none}
+.next{margin-top:30px;display:flex;justify-content:flex-end}
+.go{font:700 14px/1 var(--body);padding:11px 16px;border-radius:999px;border:1px solid var(--c);background:color-mix(in srgb,var(--c) 14%,var(--surface))}
+.go:hover{background:color-mix(in srgb,var(--c) 26%,var(--surface))}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.pad{padding:16px;display:grid;gap:6px;align-content:start}
+.pad h4{font:700 17px/1.3 var(--body);color:var(--c)}
+.pad p,.pad li{font-size:15px}
+.kicker{font:800 12px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--c)}
+.big-mx{font:600 clamp(22px,4vw,30px)/1.3 var(--math);color:var(--fg);padding:14px 16px;border-radius:10px;background:color-mix(in srgb,var(--c) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 40%,var(--surface));overflow-x:auto;white-space:nowrap}
+.rule{padding:16px;display:grid;gap:8px;align-content:start}
+.rule h4{font:700 16px/1.2 var(--body);color:var(--c)}
+.rule small{color:var(--muted);font-size:14px}
+
+/* overview map */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.cluster{padding:16px;display:grid;gap:10px;align-content:start}
+.cluster h3{color:var(--c)}
+.cluster ol{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.cluster li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;font-size:14.5px}
+.num{font:800 12px/1 var(--body);padding:5px 7px;border-radius:6px;background:color-mix(in srgb,var(--c) 22%,var(--surface));color:var(--c);margin-top:3px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+
+/* checklist */
+.prog{display:grid;gap:10px;margin-bottom:18px;padding:16px}
+.proghead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.stack{display:flex;height:14px;border-radius:99px;overflow:hidden;background:var(--surface-2)}
+.stack i{display:block;height:100%}
+.s-m{background:var(--green)}.s-r{background:var(--gold)}.s-h{background:var(--pink)}
+@media (prefers-reduced-motion:no-preference){.stack i{transition:width .3s}}
+.counts{display:flex;flex-wrap:wrap;gap:8px}
+.reset{font:600 13px/1 var(--body);background:none;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted)}
+.outs{display:grid;gap:10px}
+.out{padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:10px 16px;align-items:center}
+@media (max-width:640px){.out{grid-template-columns:1fr}}
+.out .t{font-size:15.5px}
+.out .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px}
+.ref{font:600 12px/1 var(--body);color:var(--muted);padding:5px 8px;border-radius:6px;border:1px solid var(--line)}
+.sts{display:flex;gap:6px;flex-wrap:wrap}
+.st{font:700 13px/1 var(--body);padding:9px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.st.m{--c:var(--green)}.st.r{--c:var(--gold)}.st.h{--c:var(--pink)}
+.st:hover{border-color:var(--c)}
+.st[aria-pressed="true"]{background:color-mix(in srgb,var(--c) 30%,var(--surface));border-color:var(--c)}
+.todo{margin-top:16px;padding:16px;display:grid;gap:8px}
+
+/* worked examples */
+.wx{padding:18px;display:grid;gap:12px}
+.wx .q{font:600 clamp(20px,3.6vw,26px)/1.3 var(--math);overflow-x:auto;white-space:nowrap}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.steps li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--c) 11%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 30%,var(--surface))}
+.steps li[hidden]{display:none}
+.steps .sn{font:800 12px/1 var(--body);padding:5px 7px;border-radius:6px;background:color-mix(in srgb,var(--c) 26%,var(--surface));color:var(--c);margin-top:2px}
+.steps .why{font-size:14px;color:var(--muted)}
+.steps .eq{font:600 19px/1.5 var(--math)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.fbtn{font:600 14px/1 var(--body);padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.fbtn:hover{border-color:var(--c)}
+.fbtn[aria-pressed="true"]{background:color-mix(in srgb,var(--c) 26%,var(--surface));border-color:var(--c)}
+.fbtn:disabled{opacity:.45;cursor:default}
+.warn{padding:14px 16px;display:grid;gap:4px;font-size:15px}
+.warn b{color:var(--c)}
+.mistakes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.mk{padding:14px 16px;display:grid;gap:6px;font-size:14.5px}
+.mk .bad{color:var(--pink);font-family:var(--math);font-size:16px;text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--pink) 60%,transparent)}
+.mk .good{color:var(--green);font-family:var(--math);font-size:16px}
+
+/* sandboxes */
+.box{padding:18px;display:grid;gap:14px}
+.ctrl{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.ctrl label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.ctrl input[type=range]{width:150px;accent-color:var(--c)}
+.ctrl select{font:inherit;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.val{font:800 15px/1 var(--math);min-width:1.4em;text-align:center;color:var(--c)}
+.frac{display:grid;gap:8px;justify-items:start}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.a{font:700 17px/1 var(--math);padding:7px 9px;border-radius:8px;background:color-mix(in srgb,var(--c) 22%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 55%,var(--surface))}
+.a.x{opacity:.4;text-decoration:line-through}
+.sepx{color:var(--muted);font-size:14px}
+.vbar{height:2px;background:var(--muted);width:100%;border-radius:2px}
+.result{font:700 clamp(20px,3.6vw,26px)/1.4 var(--math);padding:12px 14px;border-radius:10px;background:color-mix(in srgb,var(--c) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 42%,var(--surface))}
+.result small{display:block;font:500 14px/1.5 var(--body);color:var(--muted);margin-top:4px}
+.ex-line{font:600 clamp(19px,3.4vw,25px)/1.6 var(--math);overflow-x:auto;white-space:nowrap;padding:4px 2px}
+.tx{border-radius:5px;padding:1px 4px}
+.tx.t1{background:color-mix(in srgb,var(--blue) 30%,transparent);color:var(--fg)}
+.tx.t2{background:color-mix(in srgb,var(--green) 30%,transparent)}
+.tx.t3{background:color-mix(in srgb,var(--orange) 30%,transparent)}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+
+/* area model */
+.area{display:grid;grid-template-columns:70px repeat(2,minmax(80px,1fr));gap:6px;max-width:440px}
+.ac{display:grid;place-items:center;min-height:62px;border-radius:10px;font:700 20px/1 var(--math);padding:6px;text-align:center}
+.ac.hd{background:color-mix(in srgb,var(--green) 24%,var(--surface));border:1px solid var(--green);min-height:46px}
+.ac.cl{background:color-mix(in srgb,var(--blue) 18%,var(--surface));border:1px solid color-mix(in srgb,var(--blue) 50%,var(--surface))}
+.ac.cl.neg{background:color-mix(in srgb,var(--pink) 18%,var(--surface));border-color:color-mix(in srgb,var(--pink) 50%,var(--surface))}
+.ac.empty{background:none}
+
+/* number line */
+.nl{width:100%;overflow-x:auto}
+.nl svg{display:block;min-width:520px;width:100%;height:auto}
+.nl text{font-family:var(--math);fill:var(--fg);font-size:13px}
+.signs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.sgn{padding:14px 16px;display:grid;gap:4px}
+.sgn .s{font:700 30px/1 var(--math);color:var(--c)}
+.kw{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.kwc{padding:10px 12px;display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14.5px}
+.kwc b{font:700 20px/1 var(--math);color:var(--c)}
+
+/* practice */
+.filt{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.pq{display:grid;gap:10px;padding:16px;margin-bottom:12px}
+.pq-h{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lvl{font:700 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pq .qq{font:600 clamp(19px,3.4vw,24px)/1.5 var(--math)}
+.pq .ans{display:grid;gap:8px}
+.pq .ans[hidden]{display:none}
+.pq .wk{font:500 18px/1.7 var(--math);padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--c) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 30%,var(--surface))}
+.pq .fin{font:700 20px/1.4 var(--math);color:var(--green)}
+.pcount{font-size:14px;color:var(--muted);margin-bottom:14px}
+
+/* vocab */
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;align-items:start}
+.vc{background:color-mix(in srgb,var(--c) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 34%,var(--surface));border-radius:10px;min-width:0}
+.vc summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;justify-content:space-between;gap:10px;align-items:center;font-weight:800;color:var(--c)}
+.vc summary::-webkit-details-marker{display:none}
+.vc summary::after{content:"+";font-weight:700}
+.vc[open] summary::after{content:"−"}
+.vc .more{padding:0 14px 14px;display:grid;gap:6px;font-size:14.5px}
+.totop{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:6;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--surface);font-size:20px;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+</style>
+
+<header class="wrap hero">
+  <p class="eyebrow">Mathematics · Criterion A · Knowing and understanding</p>
+  <h1>Algebra and Inequalities</h1>
+  <p class="sub">Nine learning outcomes in one place: index laws, like terms, expanding, substitution and inequalities, with worked examples, interactive diagrams and practice that needs no calculator.</p>
+</header>
+
+<div class="wrap key" aria-label="Colour key">
+  <span class="keylabel">Colour key</span>
+  <span class="chip h-blue"><i class="dot"></i>Indices</span>
+  <span class="chip h-green"><i class="dot"></i>Like terms and expanding</span>
+  <span class="chip h-orange"><i class="dot"></i>Substitution</span>
+  <span class="chip h-purple"><i class="dot"></i>Inequalities</span>
+  <span class="chip h-pink"><i class="dot"></i>Practice</span>
+  <span class="chip h-gold"><i class="dot"></i>Exam rules</span>
+  <span class="chip"><span class="hl">Key idea</span></span>
+</div>
+
+<nav class="nav" aria-label="Guide sections">
+  <div class="nav-in">
+    <button class="navbtn h-slate" data-go="overview"><i class="dot"></i>Overview</button>
+    <button class="navbtn h-cyan" data-go="checklist"><i class="dot"></i>My checklist</button>
+    <button class="navbtn h-blue" data-go="indices"><i class="dot"></i>Indices</button>
+    <button class="navbtn h-green" data-go="terms"><i class="dot"></i>Like terms</button>
+    <button class="navbtn h-green" data-go="expand"><i class="dot"></i>Expanding</button>
+    <button class="navbtn h-orange" data-go="subst"><i class="dot"></i>Substitution</button>
+    <button class="navbtn h-purple" data-go="ineq"><i class="dot"></i>Inequalities</button>
+    <button class="navbtn h-pink" data-go="practice"><i class="dot"></i>Practice</button>
+    <button class="navbtn h-gold" data-go="rules"><i class="dot"></i>Exam rules</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- OVERVIEW -->
+<section class="sec h-slate" id="overview">
+  <div class="sec-head"><span class="sec-tag">start here</span><h2>What you need to know</h2></div>
+  <p class="lead">The unit has nine learning outcomes, grouped into three clusters. Everything in this guide follows that order, so you can tick each outcome off as you master it.</p>
+
+  <div class="map">
+    <div class="tint cluster h-blue">
+      <h3>Indices</h3>
+      <ol>
+        <li><span class="num">1</span><span>Index laws for multiplication and division</span></li>
+        <li><span class="num">2</span><span>Zero index</span></li>
+        <li><span class="num">3</span><span>Negative indices</span></li>
+      </ol>
+      <button class="go" data-go="indices">Go to indices →</button>
+    </div>
+    <div class="tint cluster h-green">
+      <h3>Algebra skills</h3>
+      <ol>
+        <li><span class="num">4</span><span>Collecting like terms</span></li>
+        <li><span class="num">5</span><span>Product of two linear expressions</span></li>
+        <li><span class="num">6</span><span>Substituting positive and negative numbers</span></li>
+      </ol>
+      <button class="go" data-go="terms">Go to like terms →</button>
+    </div>
+    <div class="tint cluster h-purple">
+      <h3>Inequalities</h3>
+      <ol>
+        <li><span class="num">7</span><span>Inequality signs</span></li>
+        <li><span class="num">8</span><span>Solving and the number line</span></li>
+        <li><span class="num">9</span><span>Word problems</span></li>
+      </ol>
+      <button class="go" data-go="ineq">Go to inequalities →</button>
+    </div>
+  </div>
+
+  <h3 class="sub-h" style="--c:var(--gold)">Rules for the assessment</h3>
+  <div class="rules">
+    <div class="tint pad h-pink"><h4>No devices</h4><p>No calculator, Apple Watch, smartwatch or any electronic device.</p></div>
+    <div class="tint pad h-blue"><h4>Positive indices</h4><p>Unless asked otherwise, final answers contain only positive indices.</p></div>
+    <div class="tint pad h-green"><h4>Show working</h4><p>Where asked, no mark is given for an answer without clear, detailed working.</p></div>
+    <div class="tint pad h-gold"><h4>Skip and return</h4><p>Questions get harder. Leave a stuck one, do one you can, then come back.</p></div>
+  </div>
+  <div class="next"><button class="go" data-go="checklist">Next: My checklist →</button></div>
+</section>
+
+<!-- CHECKLIST -->
+<section class="sec h-cyan" id="checklist">
+  <div class="sec-head"><span class="sec-tag">be honest with yourself</span><h2>My checklist</h2></div>
+  <p class="lead">Rate each outcome. Green means mastery, gold means you know it but need more practice, pink means ask for help, then practise. Your ratings are remembered in this browser.</p>
+
+  <div class="card prog">
+    <div class="proghead"><strong id="ptext">0 of 9 rated</strong><button class="reset" id="reset" type="button">Clear ratings</button></div>
+    <div class="stack" id="pstack" role="img" aria-label="Checklist summary"><i class="s-m" style="width:0"></i><i class="s-r" style="width:0"></i><i class="s-h" style="width:0"></i></div>
+    <div class="counts">
+      <span class="chip h-green"><i class="dot"></i><span id="cm">0</span> mastery</span>
+      <span class="chip h-gold"><i class="dot"></i><span id="cr">0</span> more practice</span>
+      <span class="chip h-pink"><i class="dot"></i><span id="ch">0</span> need help</span>
+    </div>
+  </div>
+  <div class="outs" id="outs"></div>
+  <div class="tint todo h-cyan" id="todo" aria-live="polite"></div>
+</section>
+
+<!-- INDICES -->
+<section class="sec h-blue" id="indices">
+  <div class="sec-head"><span class="sec-tag">outcomes 1, 2 and 3</span><h2>Index laws</h2></div>
+  <p class="lead">An index tells you how many times a base is multiplied by itself. In <span class="mx">a<sup>5</sup></span>, the base is <span class="mx">a</span> and the index is <span class="mx">5</span>. The laws only work when the bases are the same.</p>
+
+  <div class="grid g2">
+    <div class="tint rule h-blue"><h4>Multiplying: add the indices</h4><div class="big-mx">a<sup>m</sup> × a<sup>n</sup> = a<sup>m + n</sup></div><small>Textbook: Ex 2A, p18 to 19</small></div>
+    <div class="tint rule h-blue"><h4>Dividing: subtract the indices</h4><div class="big-mx">a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m − n</sup></div><small>Coefficients are multiplied or divided as normal.</small></div>
+    <div class="tint rule h-blue"><h4>Zero index</h4><div class="big-mx">a<sup>0</sup> = 1</div><small>Any non-zero base. Only the base with the zero is affected: <span class="mx">5x<sup>0</sup> = 5</span>.</small></div>
+    <div class="tint rule h-blue"><h4>Negative index</h4><div class="big-mx">a<sup>−n</sup> = 1 ÷ a<sup>n</sup></div><small>A negative index means “flip to the other side of the fraction”. It does not make the answer negative.</small></div>
+  </div>
+
+  <h3 class="sub-h">Index explorer</h3>
+  <div class="card box h-blue" id="idx">
+    <div class="ctrl">
+      <label>Operation
+        <select id="iop"><option value="mul">multiply ( × )</option><option value="div">divide ( ÷ )</option></select>
+      </label>
+      <label>First index m <input id="im" type="range" min="1" max="8" value="3"> <span class="val" id="imv">3</span></label>
+      <label>Second index n <input id="in" type="range" min="1" max="8" value="2"> <span class="val" id="inv">2</span></label>
+    </div>
+    <div class="frac" id="ifrac" aria-live="polite"></div>
+    <div class="result" id="ires"></div>
+  </div>
+  <p class="muted" style="margin-top:8px;font-size:14px">Try dividing with equal indices to see the zero index appear, then make the second index bigger to see a negative index.</p>
+
+  <h3 class="sub-h">Worked examples</h3>
+  <div class="grid g2">
+    <div class="tint wx h-blue" data-wx>
+      <span class="kicker">Multiply</span>
+      <div class="q">3x<sup>2</sup> × 4x<sup>5</sup></div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><div class="eq">3 × 4 = 12</div><div class="why">Multiply the coefficients.</div></div></li>
+        <li hidden><span class="sn">2</span><div><div class="eq">x<sup>2</sup> × x<sup>5</sup> = x<sup>2 + 5</sup> = x<sup>7</sup></div><div class="why">Same base, so add the indices.</div></div></li>
+        <li hidden><span class="sn">3</span><div><div class="eq">12x<sup>7</sup></div><div class="why">Put the pieces together.</div></div></li>
+      </ol>
+      <div class="btns"><button class="fbtn" data-more>Show next step</button><button class="fbtn" data-again>Start again</button></div>
+    </div>
+    <div class="tint wx h-blue" data-wx>
+      <span class="kicker">Divide, with a zero index</span>
+      <div class="q">15a<sup>6</sup>b ÷ 5a<sup>2</sup>b</div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><div class="eq">15 ÷ 5 = 3</div><div class="why">Divide the coefficients.</div></div></li>
+        <li hidden><span class="sn">2</span><div><div class="eq">a<sup>6 − 2</sup> = a<sup>4</sup></div><div class="why">Same base, so subtract the indices.</div></div></li>
+        <li hidden><span class="sn">3</span><div><div class="eq">b<sup>1 − 1</sup> = b<sup>0</sup> = 1</div><div class="why">A lone <span class="mx">b</span> has index 1. The zero index gives 1.</div></div></li>
+        <li hidden><span class="sn">4</span><div><div class="eq">3a<sup>4</sup></div><div class="why">The 1 disappears.</div></div></li>
+      </ol>
+      <div class="btns"><button class="fbtn" data-more>Show next step</button><button class="fbtn" data-again>Start again</button></div>
+    </div>
+    <div class="tint wx h-blue" data-wx>
+      <span class="kicker">Negative index</span>
+      <div class="q">6x<sup>5</sup>y<sup>−2</sup> ÷ 3x<sup>2</sup>y<sup>−5</sup></div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><div class="eq">6 ÷ 3 = 2</div><div class="why">Divide the coefficients.</div></div></li>
+        <li hidden><span class="sn">2</span><div><div class="eq">x<sup>5 − 2</sup> = x<sup>3</sup></div><div class="why">Subtract the <span class="mx">x</span> indices.</div></div></li>
+        <li hidden><span class="sn">3</span><div><div class="eq">y<sup>−2 − (−5)</sup> = y<sup>−2 + 5</sup> = y<sup>3</sup></div><div class="why">Subtracting a negative is adding.</div></div></li>
+        <li hidden><span class="sn">4</span><div><div class="eq">2x<sup>3</sup>y<sup>3</sup></div><div class="why">The final index is already positive.</div></div></li>
+      </ol>
+      <div class="btns"><button class="fbtn" data-more>Show next step</button><button class="fbtn" data-again>Start again</button></div>
+    </div>
+    <div class="tint wx h-blue" data-wx>
+      <span class="kicker">Write with positive indices</span>
+      <div class="q">4x<sup>−3</sup></div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><div class="eq">x<sup>−3</sup> = 1 ÷ x<sup>3</sup></div><div class="why">Only the <span class="mx">x</span> has the negative index. The 4 stays where it is.</div></div></li>
+        <li hidden><span class="sn">2</span><div><div class="eq">4 × 1 ÷ x<sup>3</sup> = 4 ÷ x<sup>3</sup></div><div class="why">Multiply back by the coefficient.</div></div></li>
+      </ol>
+      <div class="btns"><button class="fbtn" data-more>Show next step</button><button class="fbtn" data-again>Start again</button></div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">Common mistakes</h3>
+  <div class="mistakes">
+    <div class="tint mk h-blue"><span class="bad">x<sup>3</sup> × x<sup>4</sup> = x<sup>12</sup></span><span class="good">x<sup>3</sup> × x<sup>4</sup> = x<sup>7</sup></span><span>Add the indices when multiplying. Never multiply them.</span></div>
+    <div class="tint mk h-blue"><span class="bad">7x<sup>0</sup> = 1</span><span class="good">7x<sup>0</sup> = 7</span><span>The zero index only applies to <span class="mx">x</span>. But <span class="mx">(7x)<sup>0</sup> = 1</span>.</span></div>
+    <div class="tint mk h-blue"><span class="bad">2<sup>−3</sup> = −8</span><span class="good">2<sup>−3</sup> = 1 ÷ 8</span><span>A negative index gives a reciprocal, not a negative number.</span></div>
+    <div class="tint mk h-blue"><span class="bad">a<sup>5</sup> ÷ a<sup>2</sup> = a<sup>2.5</sup></span><span class="good">a<sup>5</sup> ÷ a<sup>2</sup> = a<sup>3</sup></span><span>Subtract the indices when dividing. Never divide them.</span></div>
+  </div>
+  <div class="next"><button class="go" data-go="terms">Next: Like terms →</button></div>
+</section>
+
+<!-- LIKE TERMS -->
+<section class="sec h-green" id="terms">
+  <div class="sec-head"><span class="sec-tag">outcome 4</span><h2>Collecting like terms</h2></div>
+  <p class="lead"><span class="hl">Like terms</span> have exactly the same variable part, so <span class="mx">3x</span> and <span class="mx">−x</span> are like terms but <span class="mx">x</span> and <span class="mx">x<sup>2</sup></span> are not. Add or subtract the coefficients and keep each sign with its term. Textbook: Ex 2B, p20.</p>
+
+  <div class="card box h-green">
+    <span class="kicker">Simplify</span>
+    <div class="ex-line mx" id="lt-expr"></div>
+    <div class="seg" role="group" aria-label="Stage">
+      <button class="fbtn" data-s="1" aria-pressed="true">1 · Colour like terms</button>
+      <button class="fbtn" data-s="2" aria-pressed="false">2 · Group them</button>
+      <button class="fbtn" data-s="3" aria-pressed="false">3 · Simplify</button>
+    </div>
+    <div class="result" id="lt-res" aria-live="polite"></div>
+    <div class="chips">
+      <span class="chip"><span class="tx t1">x terms</span></span>
+      <span class="chip"><span class="tx t2">y terms</span></span>
+      <span class="chip"><span class="tx t3">numbers</span></span>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="tint warn h-green"><b>Keep the sign with the term</b><span>In <span class="mx">3x + 2y − x</span> the term is <span class="mx">−x</span>, so <span class="mx">3x − x = 2x</span>.</span></div>
+    <div class="tint warn h-green"><b>Check the whole variable part</b><span><span class="mx">2a<sup>2</sup></span> and <span class="mx">5a</span> cannot be combined. Neither can <span class="mx">xy</span> and <span class="mx">x</span>.</span></div>
+  </div>
+  <div class="next"><button class="go" data-go="expand">Next: Expanding →</button></div>
+</section>
+
+<!-- EXPAND -->
+<section class="sec h-green" id="expand">
+  <div class="sec-head"><span class="sec-tag">outcome 5</span><h2>Product of two linear expressions</h2></div>
+  <p class="lead">To expand <span class="mx">(a + b)(c + d)</span>, multiply every term in the first bracket by every term in the second, then collect like terms. Four products, then simplify. Textbook: Ex 2E, p23 and Ex 16B, p281.</p>
+
+  <div class="card box h-green">
+    <div class="seg" id="ex-pick" role="group" aria-label="Choose an example"></div>
+    <div class="ex-line mx" id="ex-q"></div>
+    <div class="area" id="ex-area" role="table" aria-label="Area model"></div>
+    <div class="result" id="ex-res" aria-live="polite"></div>
+  </div>
+  <p class="muted" style="margin-top:8px;font-size:14px">Blue boxes are positive products and pink boxes are negative. Watch the signs: a negative times a positive is negative, and a negative times a negative is positive.</p>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="tint wx h-green" data-wx>
+      <span class="kicker">Worked example</span>
+      <div class="q">(2x − 3)(x + 4)</div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><div class="eq">2x × x = 2x<sup>2</sup></div><div class="why">First × first.</div></div></li>
+        <li hidden><span class="sn">2</span><div><div class="eq">2x × 4 = 8x</div><div class="why">First × second.</div></div></li>
+        <li hidden><span class="sn">3</span><div><div class="eq">−3 × x = −3x</div><div class="why">Second × first.</div></div></li>
+        <li hidden><span class="sn">4</span><div><div class="eq">−3 × 4 = −12</div><div class="why">Second × second.</div></div></li>
+        <li hidden><span class="sn">5</span><div><div class="eq">2x<sup>2</sup> + 8x − 3x − 12 = 2x<sup>2</sup> + 5x − 12</div><div class="why">Collect the like terms <span class="mx">8x − 3x</span>.</div></div></li>
+      </ol>
+      <div class="btns"><button class="fbtn" data-more>Show next step</button><button class="fbtn" data-again>Start again</button></div>
+    </div>
+    <div class="tint warn h-green" style="align-content:start">
+      <b>Checks before you finish</b>
+      <span>1. Did you write four products?</span>
+      <span>2. Is the sign of each product correct?</span>
+      <span>3. Did you collect the two middle terms?</span>
+      <span>4. Is the answer in order: squared term, x term, number?</span>
+    </div>
+  </div>
+  <div class="next"><button class="go" data-go="subst">Next: Substitution →</button></div>
+</section>
+
+<!-- SUBSTITUTION -->
+<section class="sec h-orange" id="subst">
+  <div class="sec-head"><span class="sec-tag">outcome 6</span><h2>Substituting into expressions</h2></div>
+  <p class="lead">Replace each letter with its number, and <span class="hl">put every substituted number in brackets</span>. Brackets keep negatives safe, especially with powers. Follow the order of operations: brackets, indices, multiplication and division, then addition and subtraction. Textbook: Ex 2G, p25.</p>
+
+  <div class="card box h-orange" id="sb">
+    <div class="ctrl">
+      <label>Expression
+        <select id="sx"></select>
+      </label>
+      <label>a <input id="sa" type="range" min="-5" max="5" value="-3"> <span class="val" id="sav">−3</span></label>
+      <label>b <input id="sbv" type="range" min="-5" max="5" value="2"> <span class="val" id="sbvv">2</span></label>
+    </div>
+    <div class="ex-line mx" id="s-orig"></div>
+    <div class="steps" style="display:grid;gap:8px">
+      <div class="tint" style="padding:10px 12px;display:grid;gap:2px"><span class="kicker">1 · Substitute with brackets</span><div class="ex-line mx" id="s-sub"></div></div>
+      <div class="tint" style="padding:10px 12px;display:grid;gap:2px"><span class="kicker">2 · Evaluate</span><div class="ex-line mx" id="s-ev"></div></div>
+    </div>
+    <div class="result" id="s-res"></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="tint warn h-orange"><b>The sign trap</b><span><span class="mx">(−3)<sup>2</sup> = 9</span> but <span class="mx">−3<sup>2</sup> = −9</span>. The brackets decide whether the sign is squared.</span></div>
+    <div class="tint warn h-orange"><b>Two negatives</b><span><span class="mx">−2 × (−5) = +10</span> and <span class="mx">6 − (−4) = 10</span>. Subtracting a negative is adding.</span></div>
+  </div>
+  <div class="next"><button class="go" data-go="ineq">Next: Inequalities →</button></div>
+</section>
+
+<!-- INEQUALITIES -->
+<section class="sec h-purple" id="ineq">
+  <div class="sec-head"><span class="sec-tag">outcomes 7, 8 and 9</span><h2>Inequalities</h2></div>
+  <p class="lead">An inequality compares two values instead of saying they are equal. The solution is usually a whole range of numbers, shown on a number line.</p>
+
+  <h3 class="sub-h" style="margin-top:6px">The four signs (outcome 7)</h3>
+  <div class="signs">
+    <div class="tint sgn h-purple"><span class="s">&lt;</span><b>less than</b><span class="muted">x &lt; 3 means x is below 3, and 3 is not included.</span></div>
+    <div class="tint sgn h-purple"><span class="s">&gt;</span><b>greater than</b><span class="muted">x &gt; 3 means x is above 3, and 3 is not included.</span></div>
+    <div class="tint sgn h-purple"><span class="s">≤</span><b>less than or equal to</b><span class="muted">x ≤ 3 includes 3 itself.</span></div>
+    <div class="tint sgn h-purple"><span class="s">≥</span><b>greater than or equal to</b><span class="muted">x ≥ 3 includes 3 itself.</span></div>
+  </div>
+  <p class="muted" style="margin-top:10px;font-size:14px">On a number line, an <b>open circle</b> means the number is not included and a <b>closed circle</b> means it is. The arrow points in the direction of the solutions.</p>
+
+  <h3 class="sub-h">Number line builder</h3>
+  <div class="card box h-purple">
+    <div class="ctrl">
+      <label>Sign <select id="nsign"><option value="&lt;">&lt;</option><option value="&gt;" selected>&gt;</option><option value="≤">≤</option><option value="≥">≥</option></select></label>
+      <label>Value <input id="nval" type="range" min="-7" max="7" value="2"> <span class="val" id="nvv">2</span></label>
+    </div>
+    <div class="result" id="nres" aria-live="polite"></div>
+    <div class="nl" id="nline"></div>
+  </div>
+
+  <h3 class="sub-h">Solving linear inequalities (outcome 8)</h3>
+  <p class="lead" style="margin-bottom:12px">Solve it like an equation: do the same to both sides. There is one extra rule.</p>
+  <div class="tint warn h-purple" style="margin-bottom:14px"><b>Flip the sign</b><span>When you multiply or divide both sides by a <span class="hl">negative</span> number, the inequality sign reverses. So <span class="mx">−2x &gt; 8</span> becomes <span class="mx">x &lt; −4</span>. Textbook: Ex 16I, p288.</span></div>
+
+  <div class="card box h-purple">
+    <div class="seg" id="iq-pick" role="group" aria-label="Choose an inequality"></div>
+    <div class="ex-line mx" id="iq-q"></div>
+    <ol class="steps" id="iq-steps"></ol>
+    <div class="btns"><button class="fbtn" id="iq-more">Show next step</button><button class="fbtn" id="iq-again">Start again</button></div>
+    <div class="nl" id="iq-line"></div>
+  </div>
+
+  <h3 class="sub-h">Word problems (outcome 9)</h3>
+  <div class="flow" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px">
+    <div class="tint pad h-slate"><span class="kicker">Step 1</span><h4>Define</h4><p>Let a letter stand for the unknown.</p></div>
+    <div class="tint pad h-purple"><span class="kicker">Step 2</span><h4>Translate</h4><p>Turn the words into an inequality using the key phrases below.</p></div>
+    <div class="tint pad h-green"><span class="kicker">Step 3</span><h4>Solve</h4><p>Solve it, flipping the sign if you divide by a negative.</p></div>
+    <div class="tint pad h-gold"><span class="kicker">Step 4</span><h4>Answer</h4><p>Say the result in words, with units, and check it makes sense.</p></div>
+  </div>
+
+  <h3 class="sub-h">Key phrases</h3>
+  <div class="kw">
+    <div class="tint kwc h-purple"><span>more than</span><b>&gt;</b></div>
+    <div class="tint kwc h-purple"><span>exceeds</span><b>&gt;</b></div>
+    <div class="tint kwc h-purple"><span>less than</span><b>&lt;</b></div>
+    <div class="tint kwc h-purple"><span>fewer than</span><b>&lt;</b></div>
+    <div class="tint kwc h-purple"><span>at least</span><b>≥</b></div>
+    <div class="tint kwc h-purple"><span>minimum</span><b>≥</b></div>
+    <div class="tint kwc h-purple"><span>no less than</span><b>≥</b></div>
+    <div class="tint kwc h-purple"><span>at most</span><b>≤</b></div>
+    <div class="tint kwc h-purple"><span>maximum</span><b>≤</b></div>
+    <div class="tint kwc h-purple"><span>no more than</span><b>≤</b></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="tint wx h-purple" data-wx>
+      <span class="kicker">Worked example</span>
+      <div class="q" style="white-space:normal;font:600 17px/1.5 var(--body)">A gym charges a $20 joining fee plus $5 per visit. Sara can spend at most $65. How many visits can she make?</div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><div class="eq" style="font-family:var(--body);font-size:16px">Let v = the number of visits.</div></div></li>
+        <li hidden><span class="sn">2</span><div><div class="eq">20 + 5v ≤ 65</div><div class="why">“At most” means ≤.</div></div></li>
+        <li hidden><span class="sn">3</span><div><div class="eq">5v ≤ 45</div><div class="why">Subtract 20 from both sides.</div></div></li>
+        <li hidden><span class="sn">4</span><div><div class="eq">v ≤ 9</div><div class="why">Divide by 5. The sign stays because 5 is positive.</div></div></li>
+        <li hidden><span class="sn">5</span><div><div class="eq" style="font-family:var(--body);font-size:16px">Sara can make at most 9 visits.</div><div class="why">Check: 20 + 5 × 9 = 65, which is within her budget.</div></div></li>
+      </ol>
+      <div class="btns"><button class="fbtn" data-more>Show next step</button><button class="fbtn" data-again>Start again</button></div>
+    </div>
+    <div class="tint wx h-purple" data-wx>
+      <span class="kicker">Worked example</span>
+      <div class="q" style="white-space:normal;font:600 17px/1.5 var(--body)">I think of a number, triple it, then subtract 4. The result is at least 20. What can the number be?</div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><div class="eq" style="font-family:var(--body);font-size:16px">Let n = the number.</div></div></li>
+        <li hidden><span class="sn">2</span><div><div class="eq">3n − 4 ≥ 20</div><div class="why">“At least” means ≥.</div></div></li>
+        <li hidden><span class="sn">3</span><div><div class="eq">3n ≥ 24</div><div class="why">Add 4 to both sides.</div></div></li>
+        <li hidden><span class="sn">4</span><div><div class="eq">n ≥ 8</div><div class="why">Divide by 3.</div></div></li>
+        <li hidden><span class="sn">5</span><div><div class="eq" style="font-family:var(--body);font-size:16px">The number is 8 or greater.</div></div></li>
+      </ol>
+      <div class="btns"><button class="fbtn" data-more>Show next step</button><button class="fbtn" data-again>Start again</button></div>
+    </div>
+  </div>
+
+  <div class="mistakes" style="margin-top:16px">
+    <div class="tint mk h-purple"><span class="bad">−3x ≤ 12 → x ≤ −4</span><span class="good">−3x ≤ 12 → x ≥ −4</span><span>Dividing by −3 flips the sign.</span></div>
+    <div class="tint mk h-purple"><span class="bad">x &lt; 4 drawn with a closed circle</span><span class="good">x &lt; 4 drawn with an open circle</span><span>Strict signs use an open circle.</span></div>
+  </div>
+  <div class="next"><button class="go" data-go="practice">Next: Practice →</button></div>
+</section>
+
+<!-- PRACTICE -->
+<section class="sec h-pink" id="practice">
+  <div class="sec-head"><span class="sec-tag">no calculator</span><h2>Practice questions</h2></div>
+  <p class="lead">Questions rise in difficulty within each topic. Write your full working on paper first, then reveal the model working to compare. Give final answers with positive indices.</p>
+
+  <div class="filt" id="pfilt" role="group" aria-label="Filter by topic">
+    <button class="fbtn h-pink" data-t="all" aria-pressed="true">All</button>
+    <button class="fbtn h-blue" data-t="Indices" aria-pressed="false">Indices</button>
+    <button class="fbtn h-green" data-t="Algebra" aria-pressed="false">Like terms and expanding</button>
+    <button class="fbtn h-orange" data-t="Substitution" aria-pressed="false">Substitution</button>
+    <button class="fbtn h-purple" data-t="Inequalities" aria-pressed="false">Inequalities</button>
+  </div>
+  <p class="pcount" id="pcount" aria-live="polite"></p>
+  <div id="plist"></div>
+</section>
+
+<!-- RULES + VOCAB -->
+<section class="sec h-gold" id="rules">
+  <div class="sec-head"><span class="sec-tag">before you walk in</span><h2>Exam rules and vocabulary</h2></div>
+  <div class="grid g2">
+    <div class="tint pad h-pink"><h4>No electronic devices</h4><p>A calculator, Apple Watch, smartwatch or any other electronic device is not allowed.</p></div>
+    <div class="tint pad h-blue"><h4>Positive indices only</h4><p>Unless the question says otherwise, final answers must contain only positive indices. Rewrite <span class="mx">x<sup>−2</sup></span> as <span class="mx">1 ÷ x<sup>2</sup></span>.</p></div>
+    <div class="tint pad h-green"><h4>Always show working</h4><p>You are strongly encouraged to show working every time. When a question asks you to show it, an answer without clear, detailed algebraic working earns no mark.</p></div>
+    <div class="tint pad h-gold"><h4>Move on, then return</h4><p>Questions get harder. If you are stuck, leave it, answer one you can, and come back if there is time.</p></div>
+  </div>
+
+  <h3 class="sub-h">Vocabulary</h3>
+  <div class="voc">
+    <details class="vc h-blue"><summary>index</summary><div class="more"><span>The small raised number showing how many times the base is multiplied. Plural: indices.</span><span class="mx">x<sup>4</sup> = x × x × x × x</span></div></details>
+    <details class="vc h-green"><summary>like terms</summary><div class="more"><span>Terms with exactly the same variable part. Only these can be added or subtracted.</span><span class="mx">5y and −2y</span></div></details>
+    <details class="vc h-gold"><summary>expression</summary><div class="more"><span>A mix of numbers, variables and operations with no equals or inequality sign.</span><span class="mx">3x + 2y − 7</span></div></details>
+    <details class="vc h-orange"><summary>variable</summary><div class="more"><span>A letter that stands for a number that can change.</span><span class="mx">x, y, a, b</span></div></details>
+    <details class="vc h-pink"><summary>coefficient</summary><div class="more"><span>The number multiplied by a variable.</span><span>In <span class="mx">−6x<sup>2</sup></span> the coefficient is −6.</span></div></details>
+    <details class="vc h-purple"><summary>inequality</summary><div class="more"><span>A statement comparing two values with &lt;, &gt;, ≤ or ≥.</span><span class="mx">2x + 1 ≤ 9</span></div></details>
+  </div>
+
+  <h3 class="sub-h">Command terms</h3>
+  <div class="voc">
+    <details class="vc h-green"><summary>simplify</summary><div class="more"><span>Write in the shortest form by collecting like terms or using index laws.</span><span class="mx">4a + 3a = 7a</span></div></details>
+    <details class="vc h-green"><summary>expand</summary><div class="more"><span>Multiply out brackets.</span><span class="mx">(x + 2)(x + 3) = x<sup>2</sup> + 5x + 6</span></div></details>
+    <details class="vc h-blue"><summary>factorize</summary><div class="more"><span>Write as a product by taking out a common factor. The reverse of expanding.</span><span class="mx">6x + 9 = 3(2x + 3)</span></div></details>
+    <details class="vc h-orange"><summary>substitute</summary><div class="more"><span>Replace a letter with a given number.</span><span class="mx">3a when a = −2 is 3(−2) = −6</span></div></details>
+    <details class="vc h-slate"><summary>calculate</summary><div class="more"><span>Work out a numerical answer, showing the steps. With no calculator, do it by hand.</span></div></details>
+    <details class="vc h-purple"><summary>solve</summary><div class="more"><span>Find the value, or the range of values, that makes the statement true.</span><span class="mx">x + 3 &gt; 7 gives x &gt; 4</span></div></details>
+  </div>
+</section>
+
+</main>
+
+<button class="totop" id="top" aria-label="Back to top" hidden>↑</button>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function m(s){return String(s).replace(/\^(-?\d+)/g,'<sup>$1</sup>').replace(/-/g,'−')}
+  function sgn(n){return n<0?'−'+Math.abs(n):String(n)}
+
+  /* nav */
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-go]');if(!b)return;
+    var el=document.getElementById(b.getAttribute('data-go'));
+    if(el)el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  });
+  var navBtns=$$('.navbtn');
+  function setActive(id){navBtns.forEach(function(b){var on=b.getAttribute('data-go')===id;b.setAttribute('aria-current',on?'true':'false');
+    if(on){var n=$('.nav-in');n.scrollTo({left:b.offsetLeft-(n.clientWidth-b.offsetWidth)/2,behavior:reduce?'auto':'smooth'})}})}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)setActive(en.target.id)})},{rootMargin:'-25% 0px -65% 0px'});
+    $$('main > section').forEach(function(s){io.observe(s)});
+  }
+  setActive('overview');
+  var topBtn=$('#top');
+  window.addEventListener('scroll',function(){topBtn.hidden=window.scrollY<700},{passive:true});
+  topBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:reduce?'auto':'smooth'})});
+
+  /* generic step reveal */
+  $$('[data-wx]').forEach(function(w){
+    var lis=$$('.steps li',w),shown=1;
+    var more=$('[data-more]',w),again=$('[data-again]',w);
+    function upd(){lis.forEach(function(l,i){l.hidden=i>=shown});more.disabled=shown>=lis.length}
+    more.addEventListener('click',function(){if(shown<lis.length){shown++;upd()}});
+    again.addEventListener('click',function(){shown=1;upd()});
+    upd();
+  });
+
+  /* ---------- checklist ---------- */
+  var OUT=[
+    ['Apply the index laws for multiplication and division to simplify algebraic expressions','Ex 2A p18 to 19','indices'],
+    ['Simplify expressions involving zero index','Ex 2A p18 to 19','indices'],
+    ['Simplify expressions involving negative indices','Ex 2A p18 to 19','indices'],
+    ['Simplify algebraic expressions by collecting like terms','Ex 2B p20','terms'],
+    ['Find the product of two linear expressions','Ex 2E p23 · Ex 16B p281','expand'],
+    ['Substitute positive and negative numbers into expressions and formulae','Ex 2G p25','subst'],
+    ['Understand and use inequality signs','','ineq'],
+    ['Solve linear inequalities in one variable and represent the solution set on a number line','Ex 16I p288','ineq'],
+    ['Solve word problems by constructing and solving a linear inequality','','ineq']
+  ];
+  var rate={};
+  try{rate=JSON.parse(localStorage.getItem('m8-rate')||'{}')||{}}catch(e){rate={}}
+  var outs=$('#outs');
+  OUT.forEach(function(o,i){
+    var d=document.createElement('div');d.className='card out';
+    d.innerHTML='<div><div class="t"><b class="num" style="--c:var(--cyan);margin-right:8px">'+(i+1)+'</b>'+o[0]+'</div><div class="meta">'+(o[1]?'<span class="ref">'+o[1]+'</span>':'')+'<button class="go h-cyan" data-go="'+o[2]+'" style="padding:7px 11px;font-size:12.5px">Study this</button></div></div>'+
+      '<div class="sts" role="group" aria-label="Rate outcome '+(i+1)+'"><button class="st m" data-i="'+i+'" data-v="m" aria-pressed="false">Mastery</button><button class="st r" data-i="'+i+'" data-v="r" aria-pressed="false">More practice</button><button class="st h" data-i="'+i+'" data-v="h" aria-pressed="false">Need help</button></div>';
+    outs.appendChild(d);
+  });
+  function paintRates(){
+    var c={m:0,r:0,h:0};
+    $$('.st').forEach(function(b){var i=b.getAttribute('data-i'),v=b.getAttribute('data-v');b.setAttribute('aria-pressed',rate[i]===v?'true':'false')});
+    OUT.forEach(function(o,i){if(rate[i])c[rate[i]]++});
+    var n=c.m+c.r+c.h;
+    $('#ptext').textContent=n+' of 9 rated';
+    $('#cm').textContent=c.m;$('#cr').textContent=c.r;$('#ch').textContent=c.h;
+    var s=$$('#pstack i');s[0].style.width=c.m/9*100+'%';s[1].style.width=c.r/9*100+'%';s[2].style.width=c.h/9*100+'%';
+    var t=$('#todo');
+    var need=[];OUT.forEach(function(o,i){if(rate[i]==='h')need.push({i:i,p:0});});OUT.forEach(function(o,i){if(rate[i]==='r')need.push({i:i,p:1});});
+    if(n===0){t.innerHTML='<span class="kicker">What to study next</span><span>Rate an outcome above and your study order appears here.</span>'}
+    else if(!need.length){t.innerHTML='<span class="kicker">What to study next</span><span>Every rated outcome is at mastery. Keep it sharp with the practice questions.</span><div class="btns"><button class="go h-pink" data-go="practice">Open practice</button></div>'}
+    else{t.innerHTML='<span class="kicker">What to study next</span><span>Start with the pink items, then the gold ones.</span><div class="btns">'+need.map(function(x){return '<button class="go '+(x.p===0?'h-pink':'h-gold')+'" data-go="'+OUT[x.i][2]+'">'+(x.i+1)+' · '+OUT[x.i][0].split(' ').slice(0,4).join(' ')+'…</button>'}).join('')+'</div>'}
+  }
+  outs.addEventListener('click',function(e){
+    var b=e.target.closest('.st');if(!b)return;
+    var i=b.getAttribute('data-i'),v=b.getAttribute('data-v');
+    if(rate[i]===v)delete rate[i];else rate[i]=v;
+    try{localStorage.setItem('m8-rate',JSON.stringify(rate))}catch(err){}
+    paintRates();
+  });
+  $('#reset').addEventListener('click',function(){rate={};try{localStorage.removeItem('m8-rate')}catch(e){}paintRates()});
+  paintRates();
+
+  /* ---------- index explorer ---------- */
+  function chips(n,cls){var h='';for(var i=0;i<n;i++)h+='<span class="a '+(cls&&cls[i]||'')+'">a</span>';return h}
+  function idx(){
+    var op=$('#iop').value,mm=+$('#im').value,nn=+$('#in').value;
+    $('#imv').textContent=mm;$('#inv').textContent=nn;
+    var fr=$('#ifrac'),res=$('#ires');
+    if(op==='mul'){
+      fr.innerHTML='<div class="chips">'+chips(mm)+'<span class="sepx">×</span>'+chips(nn)+'</div><span class="muted" style="font-size:14px">a<sup>'+mm+'</sup> × a<sup>'+nn+'</sup> has '+mm+' + '+nn+' = '+(mm+nn)+' copies of a</span>';
+      res.innerHTML='a<sup>'+mm+'</sup> × a<sup>'+nn+'</sup> = a<sup>'+mm+' + '+nn+'</sup> = a<sup>'+(mm+nn)+'</sup>';
+    }else{
+      var k=Math.min(mm,nn),top=[],bot=[];for(var i=0;i<mm;i++)top.push(i<k?'x':'');for(var j=0;j<nn;j++)bot.push(j<k?'x':'');
+      fr.innerHTML='<div class="chips">'+chips(mm,top)+'</div><div class="vbar"></div><div class="chips">'+chips(nn,bot)+'</div><span class="muted" style="font-size:14px">Pairs of a on the top and bottom cancel: '+k+' pair'+(k===1?'':'s')+' cancelled.</span>';
+      var d=mm-nn,out;
+      if(d>0)out='a<sup>'+mm+' − '+nn+'</sup> = a<sup>'+d+'</sup>';
+      else if(d===0)out='a<sup>'+mm+' − '+nn+'</sup> = a<sup>0</sup> = 1';
+      else out='a<sup>'+mm+' − '+nn+'</sup> = a<sup>'+m('-'+(-d))+'</sup> = 1 ÷ a<sup>'+(-d)+'</sup>';
+      res.innerHTML='a<sup>'+mm+'</sup> ÷ a<sup>'+nn+'</sup> = '+out+(d===0?'<small>Everything cancels, which is why the zero index equals 1.</small>':(d<0?'<small>More a’s on the bottom, so a negative index means a reciprocal.</small>':''));
+    }
+  }
+  ['iop','im','in'].forEach(function(id){$('#'+id).addEventListener('input',idx)});idx();
+
+  /* ---------- like terms ---------- */
+  var LT=[['+3x','t1'],['+2y','t2'],['-x','t1'],['+5','t3'],['+4y','t2'],['-7','t3']];
+  function ltTerm(t,col){var s=t[0],sign=s[0]==='-'?'−':'+',body=s.slice(1);return {sign:sign,body:body,cls:t[1]}}
+  function ltShow(stage){
+    var first=true,h='';
+    var parts=LT.map(ltTerm);
+    function fmt(p,i,color){var sg=(i===0&&p.sign==='+')?'':(i===0?'−':' '+p.sign+' ');var t=sg+p.body;return color?'<span class="tx '+p.cls+'">'+t+'</span>':t}
+    var rs=$('#lt-res'),ex=$('#lt-expr');
+    ex.innerHTML='3x + 2y − x + 5 + 4y − 7';
+    if(stage===1){
+      h=parts.map(function(p,i){return fmt(p,i,true)}).join('');
+      ex.innerHTML=h;
+      rs.innerHTML='Spot the like terms by their variable part.<small>The term <b>−x</b> has coefficient −1. The terms 5 and −7 are numbers with no variable.</small>';
+    }else if(stage===2){
+      var g=function(cls){return parts.filter(function(p){return p.cls===cls})};
+      function grp(a,cls){return '<span class="tx '+cls+'">('+a.map(function(p,i){return (i===0&&p.sign==='+')?p.body:(i===0?'−'+p.body:' '+p.sign+' '+p.body)}).join('')+')</span>'}
+      h=grp(g('t1'),'t1')+' + '+grp(g('t2'),'t2')+' + '+grp(g('t3'),'t3');
+      ex.innerHTML=h;
+      rs.innerHTML='Group each type together, keeping each sign.<small>3x − x, 2y + 4y, and 5 − 7 are now side by side.</small>';
+    }else{
+      ex.innerHTML='<span class="tx t1">2x</span> + <span class="tx t2">6y</span> − <span class="tx t3">2</span>';
+      rs.innerHTML='2x + 6y − 2<small>3x − x = 2x, 2y + 4y = 6y, 5 − 7 = −2. The three remaining terms are not like terms, so this is fully simplified.</small>';
+    }
+  }
+  $$('[data-s]').forEach(function(b){b.addEventListener('click',function(){$$('[data-s]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});ltShow(+b.getAttribute('data-s'))})});
+  ltShow(1);
+
+  /* ---------- expanding area model ---------- */
+  var EX=[
+    {q:'(x + 3)(x + 5)',r:['x','3'],c:['x','5'],cells:['x^2','5x','3x','15'],res:'x^2 + 5x + 3x + 15 = x^2 + 8x + 15'},
+    {q:'(2x - 3)(x + 4)',r:['2x','-3'],c:['x','4'],cells:['2x^2','8x','-3x','-12'],res:'2x^2 + 8x - 3x - 12 = 2x^2 + 5x - 12'},
+    {q:'(x - 2)(x - 6)',r:['x','-2'],c:['x','-6'],cells:['x^2','-6x','-2x','12'],res:'x^2 - 6x - 2x + 12 = x^2 - 8x + 12'},
+    {q:'(3x + 1)(2x - 5)',r:['3x','1'],c:['2x','-5'],cells:['6x^2','-15x','2x','-5'],res:'6x^2 - 15x + 2x - 5 = 6x^2 - 13x - 5'}
+  ];
+  var exPick=$('#ex-pick');
+  EX.forEach(function(e,i){var b=document.createElement('button');b.type='button';b.className='fbtn h-green';b.setAttribute('aria-pressed',i===0?'true':'false');b.innerHTML='<span class="mx">'+m(e.q)+'</span>';
+    b.addEventListener('click',function(){$$('button',exPick).forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});drawEx(i)});exPick.appendChild(b)});
+  function drawEx(i){
+    var e=EX[i];$('#ex-q').innerHTML=m(e.q)+' = ?';
+    var a=$('#ex-area');
+    var h='<div class="ac empty"></div><div class="ac hd">'+m(e.c[0])+'</div><div class="ac hd">'+m(e.c[1])+'</div>';
+    h+='<div class="ac hd">'+m(e.r[0])+'</div><div class="ac cl'+(e.cells[0][0]==='-'?' neg':'')+'">'+m(e.cells[0])+'</div><div class="ac cl'+(e.cells[1][0]==='-'?' neg':'')+'">'+m(e.cells[1])+'</div>';
+    h+='<div class="ac hd">'+m(e.r[1])+'</div><div class="ac cl'+(e.cells[2][0]==='-'?' neg':'')+'">'+m(e.cells[2])+'</div><div class="ac cl'+(e.cells[3][0]==='-'?' neg':'')+'">'+m(e.cells[3])+'</div>';
+    a.innerHTML=h;
+    $('#ex-res').innerHTML=m(e.res)+'<small>Collect the two x terms in the middle to finish.</small>';
+  }
+  drawEx(0);
+
+  /* ---------- substitution ---------- */
+  var SX=[
+    {n:'3a^2 - 2b + 5',sub:'3(A)^2 - 2(B) + 5',f:function(a,b){return 3*a*a-2*b+5}},
+    {n:'a^2 - b^2',sub:'(A)^2 - (B)^2',f:function(a,b){return a*a-b*b}},
+    {n:'2a(b - 4)',sub:'2(A)((B) - 4)',f:function(a,b){return 2*a*(b-4)}},
+    {n:'(a - b)^2',sub:'((A) - (B))^2',f:function(a,b){return (a-b)*(a-b)}}
+  ];
+  var sx=$('#sx');SX.forEach(function(s,i){var o=document.createElement('option');o.value=i;o.textContent=s.n.replace(/\^2/g,'²').replace(/-/g,'−');sx.appendChild(o)});
+  function subst(){
+    var s=SX[+sx.value],a=+$('#sa').value,b=+$('#sbv').value;
+    $('#sav').textContent=sgn(a);$('#sbvv').textContent=sgn(b);
+    $('#s-orig').innerHTML=m(s.n)+'&nbsp;&nbsp;when a = '+sgn(a)+', b = '+sgn(b);
+    $('#s-sub').innerHTML=m(s.sub.replace(/A/g,String(a)).replace(/B/g,String(b)));
+    var ev=s.sub.replace(/A/g,String(a)).replace(/B/g,String(b));
+    // show intermediate evaluation by computing key parts
+    var mid='';
+    function br(n){return n<0?'('+sgn(n)+')':String(n)}
+    if(+sx.value===0){var t=-2*b;mid='3 \u00D7 '+(a*a)+' \u2212 2 \u00D7 '+br(b)+' + 5 = '+(3*a*a)+(t>=0?' + '+t:' \u2212 '+(-t))+' + 5'}
+    if(+sx.value===1)mid=(a*a)+' \u2212 '+(b*b);
+    if(+sx.value===2)mid='2 \u00D7 '+br(a)+' \u00D7 '+br(b-4);
+    if(+sx.value===3)mid='('+sgn(a-b)+')<sup>2</sup>';
+    $('#s-ev').innerHTML=mid;
+    $('#s-res').innerHTML='= '+sgn(s.f(a,b))+(a<0||b<0?'<small>Negative numbers were put in brackets before evaluating.</small>':'');
+  }
+  ['sx','sa','sbv'].forEach(function(id){$('#'+id).addEventListener('input',subst)});subst();
+
+  /* ---------- number line ---------- */
+  function line(el,sign,val){
+    var W=560,x=function(v){return 40+(v+8)*30},y=44,col='var(--purple)';
+    var closed=(sign==='≤'||sign==='≥'),right=(sign==='>'||sign==='≥');
+    var s='<svg viewBox="0 0 '+W+' 90" role="img" aria-label="Number line for x '+sign+' '+val+'">';
+    s+='<line x1="16" y1="'+y+'" x2="'+(W-16)+'" y2="'+y+'" style="stroke:var(--muted);stroke-width:2"/>';
+    for(var v=-8;v<=8;v++){s+='<line x1="'+x(v)+'" y1="'+(y-6)+'" x2="'+x(v)+'" y2="'+(y+6)+'" style="stroke:var(--muted);stroke-width:2"/><text x="'+x(v)+'" y="'+(y+26)+'" text-anchor="middle">'+(v<0?'−'+(-v):v)+'</text>'}
+    var x0=x(val),x1=right?W-18:18;
+    s+='<line x1="'+x0+'" y1="'+y+'" x2="'+x1+'" y2="'+y+'" style="stroke:'+col+';stroke-width:6;stroke-linecap:round"/>';
+    var ax=right?x1:x1,dir=right?-1:1;
+    s+='<polygon points="'+(x1)+','+y+' '+(x1+dir*14)+','+(y-9)+' '+(x1+dir*14)+','+(y+9)+'" style="fill:'+col+'"/>';
+    s+='<circle cx="'+x0+'" cy="'+y+'" r="8" style="stroke:'+col+';stroke-width:3;fill:'+(closed?col:'var(--surface)')+'"/>';
+    s+='</svg>';
+    el.innerHTML=s;
+  }
+  function nb(){
+    var sg=$('#nsign').value,v=+$('#nval').value;$('#nvv').textContent=sgn(v);
+    var word={'<':'less than','>':'greater than','≤':'less than or equal to','≥':'greater than or equal to'}[sg];
+    $('#nres').innerHTML='x '+sg.replace('<','&lt;').replace('>','&gt;')+' '+sgn(v)+'<small>x is '+word+' '+sgn(v)+'. '+((sg==='≤'||sg==='≥')?'Closed circle: '+sgn(v)+' is included.':'Open circle: '+sgn(v)+' is not included.')+'</small>';
+    line($('#nline'),sg,v);
+  }
+  $('#nsign').addEventListener('input',nb);$('#nval').addEventListener('input',nb);nb();
+
+  /* ---------- solving inequalities ---------- */
+  var IQ=[
+    {q:'3x − 5 ≤ 7',st:[['3x ≤ 12','Add 5 to both sides.'],['x ≤ 4','Divide both sides by 3. The sign stays.']],sg:'≤',v:4},
+    {q:'−2x + 3 > 11',st:[['−2x > 8','Subtract 3 from both sides.'],['x < −4','Divide both sides by −2. The sign flips from > to <.']],sg:'<',v:-4},
+    {q:'5 − x ≥ 2',st:[['−x ≥ −3','Subtract 5 from both sides.'],['x ≤ 3','Multiply both sides by −1. The sign flips from ≥ to ≤.']],sg:'≤',v:3},
+    {q:'2(x + 1) < 10',st:[['2x + 2 < 10','Expand the bracket.'],['2x < 8','Subtract 2 from both sides.'],['x < 4','Divide both sides by 2. The sign stays.']],sg:'<',v:4}
+  ];
+  var iqPick=$('#iq-pick'),iqi=0,iqs=1;
+  IQ.forEach(function(e,i){var b=document.createElement('button');b.type='button';b.className='fbtn h-purple';b.setAttribute('aria-pressed',i===0?'true':'false');b.innerHTML='<span class="mx">'+e.q+'</span>';
+    b.addEventListener('click',function(){iqi=i;iqs=0;$$('button',iqPick).forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});drawIq()});iqPick.appendChild(b)});
+  function drawIq(){
+    var e=IQ[iqi];$('#iq-q').textContent='Solve '+e.q;
+    var ol=$('#iq-steps');ol.innerHTML='';
+    e.st.forEach(function(s,i){var li=document.createElement('li');li.hidden=i>=iqs;li.innerHTML='<span class="sn">'+(i+1)+'</span><div><div class="eq">'+s[0].replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div><div class="why">'+s[1].replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div></div>';ol.appendChild(li)});
+    $('#iq-more').disabled=iqs>=e.st.length;
+    if(iqs>=e.st.length)line($('#iq-line'),e.sg,e.v);else $('#iq-line').innerHTML='';
+  }
+  $('#iq-more').addEventListener('click',function(){if(iqs<IQ[iqi].st.length){iqs++;drawIq()}});
+  $('#iq-again').addEventListener('click',function(){iqs=0;drawIq()});
+  iqs=0;
+  // start with the first step visible
+  iqs=1;drawIq();
+
+  /* ---------- practice ---------- */
+  var PQ=[
+    {t:'Indices',l:1,q:'Simplify 4a^3 × 5a^6',w:['4 × 5 = 20','a^3 × a^6 = a^9 (add the indices: 3 + 6 = 9)'],a:'20a^9'},
+    {t:'Indices',l:1,q:'Simplify 18x^7 ÷ 6x^2',w:['18 ÷ 6 = 3','x^7 ÷ x^2 = x^5 (subtract the indices: 7 − 2 = 5)'],a:'3x^5'},
+    {t:'Indices',l:2,q:'Simplify 7x^0 + (3y)^0',w:['7x^0 = 7 × 1 = 7','(3y)^0 = 1','7 + 1 = 8'],a:'8'},
+    {t:'Indices',l:2,q:'Write 5x^-2 with a positive index',w:['x^-2 = 1 ÷ x^2','5 × 1 ÷ x^2 = 5 ÷ x^2'],a:'5 ÷ x^2'},
+    {t:'Indices',l:3,q:'Simplify 12m^-3n^5 ÷ 4m^2n^-1, giving your answer with positive indices',w:['12 ÷ 4 = 3','m: -3 − 2 = -5, so m^-5','n: 5 − (-1) = 6, so n^6','m^-5 = 1 ÷ m^5'],a:'3n^6 ÷ m^5'},
+    {t:'Algebra',l:1,q:'Simplify 5x + 3y − 2x + y − 4',w:['x terms: 5x − 2x = 3x','y terms: 3y + y = 4y','number: −4'],a:'3x + 4y - 4'},
+    {t:'Algebra',l:2,q:'Simplify 3a^2 + 2a − a^2 + 5a',w:['a^2 terms: 3a^2 − a^2 = 2a^2','a terms: 2a + 5a = 7a'],a:'2a^2 + 7a'},
+    {t:'Algebra',l:2,q:'Expand and simplify (x + 4)(x − 2)',w:['x × x = x^2','x × (-2) = -2x','4 × x = 4x','4 × (-2) = -8','x^2 − 2x + 4x − 8 = x^2 + 2x − 8'],a:'x^2 + 2x - 8'},
+    {t:'Algebra',l:3,q:'Expand and simplify (3x − 2)(2x + 5)',w:['3x × 2x = 6x^2','3x × 5 = 15x','-2 × 2x = -4x','-2 × 5 = -10','6x^2 + 15x − 4x − 10 = 6x^2 + 11x − 10'],a:'6x^2 + 11x - 10'},
+    {t:'Substitution',l:1,q:'Find the value of 2a^2 − 3b when a = -3 and b = -2',w:['2(-3)^2 − 3(-2)','2(9) − (-6)','18 + 6'],a:'24'},
+    {t:'Substitution',l:3,q:'Find the value of a(b − 2a) when a = -2 and b = 5',w:['(-2)(5 − 2(-2))','(-2)(5 + 4)','(-2)(9)'],a:'-18'},
+    {t:'Inequalities',l:1,q:'Solve 4x + 7 > 3 and show the solution on a number line',w:['4x > 3 − 7','4x > -4','x > -1 (divide by 4, sign stays)','Number line: open circle at -1, arrow pointing right'],a:'x > -1'},
+    {t:'Inequalities',l:2,q:'Solve -3x ≤ 12',w:['Divide both sides by -3','The sign flips from ≤ to ≥','x ≥ -4','Number line: closed circle at -4, arrow pointing right'],a:'x ≥ -4'},
+    {t:'Inequalities',l:3,q:'Solve 2(3 − x) ≥ 10',w:['6 − 2x ≥ 10','-2x ≥ 4','Divide by -2 and flip the sign','x ≤ -2'],a:'x ≤ -2'},
+    {t:'Inequalities',l:3,q:'A taxi charges $4 plus $2 per km. Ben has $30. Write and solve an inequality to find the greatest distance he can travel',w:['Let k = distance in km','4 + 2k ≤ 30','2k ≤ 26','k ≤ 13'],a:'k ≤ 13, so Ben can travel at most 13 km'}
+  ];
+  var tcol={Indices:'h-blue',Algebra:'h-green',Substitution:'h-orange',Inequalities:'h-purple'};
+  var plist=$('#plist'),ptopic='all',got={};
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function drawP(){
+    plist.innerHTML='';var n=0;
+    PQ.forEach(function(p,i){
+      if(ptopic!=='all'&&p.t!==ptopic)return;n++;
+      var d=document.createElement('div');d.className='tint pq '+tcol[p.t];
+      d.innerHTML='<div class="pq-h"><span class="chip '+tcol[p.t]+'"><i class="dot"></i>'+(p.t==='Algebra'?'Like terms and expanding':p.t)+'</span><span class="lvl">Level '+p.l+' of 3</span></div>'+
+        '<div class="qq">'+m(esc(p.q))+'</div>'+
+        '<div class="btns"><button class="fbtn" data-show="'+i+'" aria-expanded="false">Show model working</button></div>'+
+        '<div class="ans" id="ans'+i+'" hidden>'+p.w.map(function(w){return '<div class="wk">'+m(esc(w))+'</div>'}).join('')+'<div class="fin">Answer: '+m(esc(p.a))+'</div>'+
+        '<div class="btns"><button class="fbtn h-green" data-got="'+i+'" aria-pressed="'+(got[i]===1)+'">I got it</button><button class="fbtn h-pink" data-got="'+i+'" data-no="1" aria-pressed="'+(got[i]===2)+'">I need to retry</button></div></div>';
+      plist.appendChild(d);
+    });
+    var g1=0,g2=0;Object.keys(got).forEach(function(k){if(got[k]===1)g1++;else g2++});
+    $('#pcount').textContent=n+' question'+(n===1?'':'s')+' shown · '+g1+' marked as got it · '+g2+' to retry';
+  }
+  plist.addEventListener('click',function(e){
+    var s=e.target.closest('[data-show]');
+    if(s){var a=$('#ans'+s.getAttribute('data-show'));a.hidden=!a.hidden;s.setAttribute('aria-expanded',String(!a.hidden));s.textContent=a.hidden?'Show model working':'Hide model working';return}
+    var g=e.target.closest('[data-got]');
+    if(g){var i=g.getAttribute('data-got');var v=g.hasAttribute('data-no')?2:1;var open=$$('.ans',plist).map(function(x){return x.hidden});
+      if(got[i]===v)delete got[i];else got[i]=v;drawP();$$('.ans',plist).forEach(function(x,k){x.hidden=open[k];var b=x.parentNode.querySelector('[data-show]');b.textContent=x.hidden?'Show model working':'Hide model working';b.setAttribute('aria-expanded',String(!x.hidden))})}
+  });
+  $$('#pfilt .fbtn').forEach(function(b){b.addEventListener('click',function(){ptopic=b.getAttribute('data-t');$$('#pfilt .fbtn').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});drawP()})});
+  drawP();
+})();
+</script>
+
+</body></html>
